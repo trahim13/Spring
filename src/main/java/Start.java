@@ -15,8 +15,16 @@ public class Start {
         }
 
 //        RobotT1000 t1000 = (RobotT1000) context.getBean("t1000");
+        System.out.println();
 
         RobotT1000 t1000l = (RobotT1000) context.getBean("t1000l");
         t1000l.action();
+
+        System.out.println();
+        System.out.println("Constructor param arg");
+
+
+        RobotT1000 robotConArg = (RobotT1000) context.getBean("t1000ConArg");
+        robotConArg.action();
     }
 }

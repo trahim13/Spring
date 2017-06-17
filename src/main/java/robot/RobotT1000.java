@@ -11,6 +11,10 @@ public class RobotT1000 implements Robot {
     private Leg leg;
     private Head head;
 
+    private String color;
+    private int year;
+    private boolean soundEnabled;
+
 
     public RobotT1000() {
 
@@ -20,6 +24,21 @@ public class RobotT1000 implements Robot {
         this.hand = hand;
         this.leg = leg;
         this.head = head;
+    }
+
+    public RobotT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
+        this.hand = hand;
+        this.leg = leg;
+        this.head = head;
+        this.color = color;
+        this.year = year;
+        this.soundEnabled = soundEnabled;
+    }
+
+    public RobotT1000(String color, int year, boolean soundEnabled) {
+        this.color = color;
+        this.year = year;
+        this.soundEnabled = soundEnabled;
     }
 
     public Hand getHand() {
@@ -46,10 +65,38 @@ public class RobotT1000 implements Robot {
         this.head = head;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public boolean isSoundEnabled() {
+        return soundEnabled;
+    }
+
+    public void setSoundEnabled(boolean soundEnabled) {
+        this.soundEnabled = soundEnabled;
+    }
+
     public void action() {
         head.calc();
         leg.go();
         hand.catchSomething();
+        System.out.println("color: " + color);
+        System.out.println("year: " + year);
+        System.out.println("can play sound: " + soundEnabled);
+
     }
 
     public void dance() {
