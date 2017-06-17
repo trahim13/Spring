@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="t1000s" class="robot.RobotT1000"/>
+
+
+    <bean id="t1000l" class="robot.RobotT1000">
+    <constructor-arg ref="sonyHand"></constructor-arg>
+    <constructor-arg ref="sonyLeg"></constructor-arg>
+    <constructor-arg ref="sonyHead"></constructor-arg>
+
+        <property name="hand" ref="toshibaHand"/>
+        <property name="head" ref="toshibaHead"/>
+        <!--<property name="leg" ref="toshibaLeg"/>-->
+    </bean>
+
+
+
+    <bean id="sonyHead" class="impls.sony.SonyHead"/>
+    <bean id="sonyHand" class="impls.sony.SonyHand"/>
+    <bean id="sonyLeg" class="impls.sony.SonyLeg"/>
+
+    <bean id="toshibaHead" class="impls.toshiba.ToshibaHead"/>
+    <bean id="toshibaHand" class="impls.toshiba.ToshibaHand"/>
+    <bean id="toshibaLeg" class="impls.toshiba.ToshibaLeg"/>
+
+
+
+
+
+
+</beans>
