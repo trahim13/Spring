@@ -103,4 +103,23 @@ public class RobotT1000 implements Robot {
         System.out.println("T1000 is dancing!");
 
     }
+
+    public void initObject() {
+        System.out.println("init");
+    }
+
+    public void destroyObject() {
+        System.out.println("destroy");
+
+    }
+
+    public void defaultInit() {
+        System.out.println("Default init");
+
+    }
+
+    public void defaultDestroy() {
+        System.out.println("Default destroy");
+
+    }
 }

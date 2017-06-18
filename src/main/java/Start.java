@@ -14,7 +14,6 @@ public class Start {
             t1000.dance();
         }
 
-//        RobotT1000 t1000 = (RobotT1000) context.getBean("t1000");
         System.out.println();
 
         RobotT1000 t1000l = (RobotT1000) context.getBean("t1000l");
@@ -26,5 +25,14 @@ public class Start {
 
         RobotT1000 robotConArg = (RobotT1000) context.getBean("t1000ConArg");
         robotConArg.action();
+
+        System.out.println();
+
+        System.out.println("Hash");
+        RobotT1000 t1000One = (RobotT1000) context.getBean("t1000ConArg");
+        System.out.println(t1000One.getHand());
+        t1000One = (RobotT1000) context.getBean("t1000ConArg");
+        System.out.println(t1000One.getHand());
+
     }
 }

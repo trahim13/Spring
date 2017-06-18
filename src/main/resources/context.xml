@@ -2,10 +2,16 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:p="http://www.springframework.org/schema/p"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+
+default-init-method="defaultInit"
+default-destroy-method="defaultDestroy"
+       default-lazy-init="true"
+
+>
 
 
-    <bean id="t1000s" class="robot.RobotT1000"/>
+    <bean id="t1000s" class="robot.RobotT1000" scope="prototype"/>
 
 
     <bean id="t1000l" class="robot.RobotT1000">
@@ -21,8 +27,14 @@
     <bean id="t1000ConArg" class="robot.RobotT1000"
           p:hand-ref="toshibaHand"
           p:head-ref="toshibaHead"
-          p:leg-ref="toshibaLeg">
-        
+          p:leg-ref="toshibaLeg"
+          scope="prototype"
+    init-method="initObject"
+    destroy-method="destroyObject"
+    lazy-init="true">
+
+
+
         <constructor-arg value="silver" index="0" type="java.lang.String"/>
         <constructor-arg value="true" index="2" type="boolean"/>
         <constructor-arg value="1966" index="1" type="int"/>
@@ -42,7 +54,7 @@
     <bean id="sonyLeg" class="impls.sony.SonyLeg"/>
 
     <bean id="toshibaHead" class="impls.toshiba.ToshibaHead"/>
-    <bean id="toshibaHand" class="impls.toshiba.ToshibaHand"/>
+    <bean id="toshibaHand" class="impls.toshiba.ToshibaHand" scope="prototype"/>
     <bean id="toshibaLeg" class="impls.toshiba.ToshibaLeg"/>
 
 
