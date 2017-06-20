@@ -4,7 +4,7 @@ import robot.RobotT1000;
 
 public class Start {
     public static void main(String[] args) {
-        ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("all_context.xml");
 
         RobotT1000 t1000;
 

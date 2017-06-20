@@ -6,6 +6,9 @@
 
     <import resource="sony_context.xml"/>
     <import resource="toshiba_context.xml"/>
+    <import resource="db_context.xml"/>
+
+
 
     <bean id="t1000s" class="robot.RobotT1000" scope="prototype"/>
 
@@ -25,17 +28,16 @@
           p:hand-ref="toshibaHand"
           p:head-ref="toshibaHead"
           p:leg-ref="toshibaLeg"
-          scope="prototype">
+          scope="prototype"
+    depends-on="database">
 
         <constructor-arg value="silver" index="0" type="java.lang.String"/>
         <constructor-arg value="true" index="2" type="boolean"/>
         <constructor-arg value="1966" index="1" type="int"/>
 
-
         <!--<property name="leg" ref="toshibaLeg"/>-->
         <!--<property name="head" ref="toshibaHead"/>-->
         <!--<property name="hand" ref="toshibaHand"/>-->
-
     </bean>
 
 
