@@ -13,23 +13,22 @@
         <lookup-method name="createRobot" bean="t1000"/>
     </bean>
 
-  <bean id="t1000Pool" class="impls.T1000Pool">
-      <property name="robotCollection">
-          <!--<null></null>-->
-          <list>
-              <ref bean="t1000"/>
-              <bean class="robot.RobotT1000">
-                  <constructor-arg ref="toshibaHand"/>
-                  <constructor-arg ref="toshibaLeg"/>
-                  <constructor-arg ref="toshibaHead"/>
-                  <constructor-arg value="gold" name="color"/>
-                  <constructor-arg value="false" name="soundEnabled"/>
-                  <constructor-arg value="2017" name="year"/>
-                      </bean>
+    <bean id="t1000Pool" class="impls.T1000Pool">
+        <constructor-arg name="robotCollection">
+            <map>
+                <entry key="2016" value-ref="t1000"/>
+                <entry key="2017" value-ref="t1000"/>
+                <entry key="2018">
+                    <bean class="robot.RobotT1000" parent="baseModel">
+                        <constructor-arg value="2018" name="year" type="int"/>
+                        <constructor-arg value="green" name="color" type="java.lang.String"/>
+                        <constructor-arg value="true" name="soundEnabled" type="boolean"/>
+                    </bean>
+                </entry>
+            </map>
 
-          </list>
-      </property>
-  </bean>
+        </constructor-arg>
+    </bean>
 
 
 </beans>
