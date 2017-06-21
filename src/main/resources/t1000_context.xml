@@ -15,16 +15,16 @@
         <constructor-arg ref="sonyLeg" index="1"></constructor-arg>
         <constructor-arg ref="sonyHead" index="2"></constructor-arg>
 
-        <property name="hand" ref="toshibaHand"/>
 
 
     </bean>
 
 
-    <bean id="t1000b" class="robot.RobotT1000"
+    <bean id="t1000" class="robot.RobotT1000"
           scope="prototype"
     depends-on="database"
-    parent="baseModel">
+    parent="baseModel"
+    >
 
 
 
@@ -32,7 +32,7 @@
         <constructor-arg value="1966" index="4" type="int"/>
         <constructor-arg value="true" index="5" type="boolean"/>
 
-        <property name="hand" ref="sonyHand"/>
+
 
         <!--<constructor-arg ref="sonyHand"></constructor-arg>-->
         <!--<constructor-arg ref="sonyLeg"></constructor-arg>-->
