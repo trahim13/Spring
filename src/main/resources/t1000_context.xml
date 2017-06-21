@@ -8,6 +8,30 @@
     <import resource="toshiba_context.xml"/>
     <import resource="db_context.xml"/>
 
+    <bean id="actionReplacer" class="robot.ActionReplacer"/>
+
+
+
+
+    <bean id="t1000" class="robot.RobotT1000"
+          scope="prototype"
+    depends-on="database"
+    parent="baseModel"
+    >
+        <constructor-arg value="silver" index="3" type="java.lang.String"/>
+        <constructor-arg value="1966" index="4" type="int"/>
+        <constructor-arg value="true" index="5" type="boolean"/>
+
+        <!--<constructor-arg ref="sonyHand"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyLeg"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyHead"></constructor-arg>-->
+
+        <!--<property name="leg" ref="toshibaLeg"/>-->
+        <!--<property name="head" ref="toshibaHead"/>-->
+        <!--<property name="hand" ref="toshibaHand"/>-->
+
+        <replaced-method name="action" replacer="actionReplacer"/>
+    </bean>
 
 
     <bean id="baseModel" abstract="true">
@@ -18,31 +42,5 @@
 
 
     </bean>
-
-
-    <bean id="t1000" class="robot.RobotT1000"
-          scope="prototype"
-    depends-on="database"
-    parent="baseModel"
-    >
-
-
-
-        <constructor-arg value="silver" index="3" type="java.lang.String"/>
-        <constructor-arg value="1966" index="4" type="int"/>
-        <constructor-arg value="true" index="5" type="boolean"/>
-
-
-
-        <!--<constructor-arg ref="sonyHand"></constructor-arg>-->
-        <!--<constructor-arg ref="sonyLeg"></constructor-arg>-->
-        <!--<constructor-arg ref="sonyHead"></constructor-arg>-->
-
-        <!--<property name="leg" ref="toshibaLeg"/>-->
-        <!--<property name="head" ref="toshibaHead"/>-->
-        <!--<property name="hand" ref="toshibaHand"/>-->
-    </bean>
-
-
 
 </beans>
