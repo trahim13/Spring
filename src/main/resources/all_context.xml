@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
        default-lazy-init="true">
 
     <import resource="t1000_context.xml"/>
@@ -12,4 +12,24 @@
     <bean id="t1000Conveyor" class="impls.conveyr.T1000Conveyor">
         <lookup-method name="createRobot" bean="t1000"/>
     </bean>
+
+  <bean id="t1000Pool" class="impls.T1000Pool">
+      <property name="robotCollection">
+          <!--<null></null>-->
+          <list>
+              <ref bean="t1000"/>
+              <bean class="robot.RobotT1000">
+                  <constructor-arg ref="toshibaHand"/>
+                  <constructor-arg ref="toshibaLeg"/>
+                  <constructor-arg ref="toshibaHead"/>
+                  <constructor-arg value="gold" name="color"/>
+                  <constructor-arg value="false" name="soundEnabled"/>
+                  <constructor-arg value="2017" name="year"/>
+                      </bean>
+
+          </list>
+      </property>
+  </bean>
+
+
 </beans>

@@ -1,3 +1,4 @@
+import impls.T1000Pool;
 import interfaces.Robot;
 import interfaces.RobotConveyor;
 import org.springframework.context.ApplicationContext;
@@ -8,11 +9,8 @@ public class Start {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("all_context.xml");
 
-        RobotConveyor conveyor = (RobotConveyor) context.getBean("t1000Conveyor");
-
-        Robot terminator1 = conveyor.createRobot();
-        terminator1.action();
-
+        T1000Pool t1000Pool = (T1000Pool) context.getBean("t1000Pool");
+        t1000Pool.action();
 
 
 

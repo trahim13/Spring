@@ -30,7 +30,7 @@
         <!--<property name="head" ref="toshibaHead"/>-->
         <!--<property name="hand" ref="toshibaHand"/>-->
 
-        <replaced-method name="action" replacer="actionReplacer"/>
+        <!--<replaced-method name="action" replacer="actionReplacer"/>-->
     </bean>
 
 
