@@ -10,30 +10,33 @@
 
 
 
-    <bean id="t1000s" class="robot.RobotT1000" scope="prototype"/>
-
-
-    <bean id="t1000l" class="robot.RobotT1000">
-        <constructor-arg ref="sonyHand"></constructor-arg>
-        <constructor-arg ref="sonyLeg"></constructor-arg>
-        <constructor-arg ref="sonyHead"></constructor-arg>
+    <bean id="baseModel" abstract="true">
+        <constructor-arg ref="sonyHand" index="0"></constructor-arg>
+        <constructor-arg ref="sonyLeg" index="1"></constructor-arg>
+        <constructor-arg ref="sonyHead" index="2"></constructor-arg>
 
         <property name="hand" ref="toshibaHand"/>
-        <property name="head" ref="toshibaHead"/>
-        <!--<property name="leg" ref="toshibaLeg"/>-->
+
+
     </bean>
 
 
-    <bean id="t1000ConArg" class="robot.RobotT1000"
-          p:hand-ref="toshibaHand"
-          p:head-ref="toshibaHead"
-          p:leg-ref="toshibaLeg"
+    <bean id="t1000b" class="robot.RobotT1000"
           scope="prototype"
-    depends-on="database">
+    depends-on="database"
+    parent="baseModel">
 
-        <constructor-arg value="silver" index="0" type="java.lang.String"/>
-        <constructor-arg value="true" index="2" type="boolean"/>
-        <constructor-arg value="1966" index="1" type="int"/>
+
+
+        <constructor-arg value="silver" index="3" type="java.lang.String"/>
+        <constructor-arg value="1966" index="4" type="int"/>
+        <constructor-arg value="true" index="5" type="boolean"/>
+
+        <property name="hand" ref="sonyHand"/>
+
+        <!--<constructor-arg ref="sonyHand"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyLeg"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyHead"></constructor-arg>-->
 
         <!--<property name="leg" ref="toshibaLeg"/>-->
         <!--<property name="head" ref="toshibaHead"/>-->

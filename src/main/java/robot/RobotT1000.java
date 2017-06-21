@@ -7,11 +7,9 @@ import interfaces.Robot;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
-public class RobotT1000 implements Robot, InitializingBean, DisposableBean {
+public class RobotT1000 extends BaseModel implements Robot, InitializingBean, DisposableBean {
 
-    private Hand hand;
-    private Leg leg;
-    private Head head;
+
 
     private String color;
     private int year;
@@ -23,15 +21,11 @@ public class RobotT1000 implements Robot, InitializingBean, DisposableBean {
     }
 
     public RobotT1000(Hand hand, Leg leg, Head head) {
-        this.hand = hand;
-        this.leg = leg;
-        this.head = head;
+        super(hand, leg, head);
     }
 
     public RobotT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
-        this.hand = hand;
-        this.leg = leg;
-        this.head = head;
+        super(hand, leg, head);
         this.color = color;
         this.year = year;
         this.soundEnabled = soundEnabled;
@@ -43,29 +37,7 @@ public class RobotT1000 implements Robot, InitializingBean, DisposableBean {
         this.soundEnabled = soundEnabled;
     }
 
-    public Hand getHand() {
-        return hand;
-    }
 
-    public void setHand(Hand hand) {
-        this.hand = hand;
-    }
-
-    public Leg getLeg() {
-        return leg;
-    }
-
-    public void setLeg(Leg leg) {
-        this.leg = leg;
-    }
-
-    public Head getHead() {
-        return head;
-    }
-
-    public void setHead(Head head) {
-        this.head = head;
-    }
 
     public String getColor() {
         return color;
@@ -92,9 +64,9 @@ public class RobotT1000 implements Robot, InitializingBean, DisposableBean {
     }
 
     public void action() {
-        head.calc();
-        leg.go();
-        hand.catchSomething();
+        getHead().calc();
+        getLeg().go();
+        getHand().catchSomething();
         System.out.println("color: " + color);
         System.out.println("year: " + year);
         System.out.println("can play sound: " + soundEnabled);
