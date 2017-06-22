@@ -2,9 +2,20 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
-       default-lazy-init="true">
+       default-lazy-init="true"
+>
 
-    <bean id="sonyHead" class="impls.sony.SonyHead"/>
+
+    <bean id="sonyHead1" class="impls.sony.SonyHead">
+        <property name="color" value="gold"/>
+        <qualifier value="sonyGoldenHead"/>
+            </bean>
+
+    <bean id="sonyHead2" class="impls.sony.SonyHead">
+        <property name="color" value="bronze"/>
+        <qualifier value="sonyBronzeHead"/>
+    </bean>
+
     <bean id="sonyHand" class="impls.sony.SonyHand"/>
     <bean id="sonyLeg" class="impls.sony.SonyLeg"/>
 

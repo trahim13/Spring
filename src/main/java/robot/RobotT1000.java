@@ -21,11 +21,11 @@ public class RobotT1000 extends BaseModel implements Robot, InitializingBean, Di
     }
 
     public RobotT1000(Hand hand, Leg leg, Head head) {
-        super(hand, leg, head);
+//        super(hand, leg, head);
     }
 
     public RobotT1000(Hand hand, Leg leg, Head head, String color, int year, boolean soundEnabled) {
-        super(hand, leg, head);
+//        super(hand, leg, head);
         this.color = color;
         this.year = year;
         this.soundEnabled = soundEnabled;

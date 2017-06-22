@@ -1,34 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
        default-lazy-init="true">
+    <context:annotation-config/>
 
-    <import resource="t1000_context.xml"/>
+    <import resource="toshiba_context.xml"/>
+    <import resource="sony_context.xml"/>
 
-
-    <bean class="MyBeanPostProcessor"/>
-
-    <bean id="t1000Conveyor" class="impls.conveyr.T1000Conveyor">
-        <lookup-method name="createRobot" bean="t1000"/>
-    </bean>
-
-    <bean id="t1000Pool" class="impls.T1000Pool">
-        <constructor-arg name="robotCollection">
-            <map>
-                <entry key="2016" value-ref="t1000"/>
-                <entry key="2017" value-ref="t1000"/>
-                <entry key="2018">
-                    <bean class="robot.RobotT1000" parent="baseModel">
-                        <constructor-arg value="2018" name="year" type="int"/>
-                        <constructor-arg value="green" name="color" type="java.lang.String"/>
-                        <constructor-arg value="true" name="soundEnabled" type="boolean"/>
-                    </bean>
-                </entry>
-            </map>
-
-        </constructor-arg>
-    </bean>
-
+    <bean name="t1000" class="robot.RobotT1000"></bean>
 
 </beans>
