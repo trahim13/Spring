@@ -17,10 +17,10 @@
           scope="prototype"
     depends-on="database"
     parent="baseModel"
-    >
-        <constructor-arg value="silver" index="3" type="java.lang.String"/>
-        <constructor-arg value="1966" index="4" type="int"/>
-        <constructor-arg value="true" index="5" type="boolean"/>
+   autowire="byType" >
+        <!--<constructor-arg value="silver" index="3" type="java.lang.String"/>-->
+        <!--<constructor-arg value="1966" index="4" type="int"/>-->
+        <!--<constructor-arg value="true" index="5" type="boolean"/>-->
 
         <!--<constructor-arg ref="sonyHand"></constructor-arg>-->
         <!--<constructor-arg ref="sonyLeg"></constructor-arg>-->
@@ -34,10 +34,10 @@
     </bean>
 
 
-    <bean id="baseModel" abstract="true">
-        <constructor-arg ref="sonyHand" index="0"></constructor-arg>
-        <constructor-arg ref="sonyLeg" index="1"></constructor-arg>
-        <constructor-arg ref="sonyHead" index="2"></constructor-arg>
+    <bean id="baseModel" abstract="true" autowire="byType">
+        <!--<constructor-arg ref="sonyHand" index="0"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyLeg" index="1"></constructor-arg>-->
+        <!--<constructor-arg ref="sonyHead" index="2"></constructor-arg>-->
 
 
 

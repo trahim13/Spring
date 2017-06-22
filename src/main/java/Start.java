@@ -9,8 +9,9 @@ public class Start {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("all_context.xml");
 
-        T1000Pool t1000Pool = (T1000Pool) context.getBean("t1000Pool");
-        t1000Pool.action();
+        RobotT1000 t1000 = (RobotT1000) context.getBean("t1000");
+        t1000.action();
+
 
 
 
