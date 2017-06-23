@@ -13,26 +13,25 @@ import org.springframework.beans.factory.annotation.Required;
  */
 public abstract class BaseModel implements Robot {
     @Autowired//(required = false)
-    @Qualifier("sonyHand")
     private Hand hand;
+
     @Autowired//(required = false)
-    @Qualifier("toshibaLeg")
     private Leg leg;
+
     @Autowired//(required = false)
-    @Qualifier("sonyGoldenHead")
     private Head head;
 
     public BaseModel() {
         System.out.println(this + " baseModel constructor.");
     }
 
-//   @Autowired
-//    public BaseModel(Hand hand, Leg leg, Head head) {
-//        this();
-//        this.hand = hand;
-//        this.leg = leg;
-//        this.head = head;
-//    }
+   @Autowired
+    public BaseModel(Hand hand, Leg leg, Head head) {
+        this();
+        this.hand = hand;
+        this.leg = leg;
+        this.head = head;
+    }
 
     public Hand getHand() {
         return hand;

@@ -4,12 +4,16 @@
        xmlns:util="http://www.springframework.org/schema/util"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
-       default-lazy-init="true">
+       >
+
     <context:annotation-config/>
+    <context:component-scan base-package="robot"/>
+    <context:component-scan base-package="impls"/>
+    <context:component-scan base-package="interfaces"/>
 
-    <import resource="toshiba_context.xml"/>
-    <import resource="sony_context.xml"/>
 
-    <bean name="t1000" class="robot.RobotT1000"></bean>
+
+
+
 
 </beans>

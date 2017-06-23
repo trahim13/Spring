@@ -6,19 +6,39 @@ import interfaces.Leg;
 import interfaces.Robot;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RobotT1000 extends BaseModel implements Robot, InitializingBean, DisposableBean {
-
 
 
     private String color;
     private int year;
     private boolean soundEnabled;
 
-
     public RobotT1000() {
 
     }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public RobotT1000 model1() {
+
+        return new RobotT1000();
+    }
+
+    @Bean
+    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public RobotT1000 model2() {
+        ;
+        return new RobotT1000("BLACK", 2017, true);
+    }
+
+
 
     public RobotT1000(Hand hand, Leg leg, Head head) {
 //        super(hand, leg, head);
@@ -36,7 +56,6 @@ public class RobotT1000 extends BaseModel implements Robot, InitializingBean, Di
         this.year = year;
         this.soundEnabled = soundEnabled;
     }
-
 
 
     public String getColor() {
@@ -99,7 +118,7 @@ public class RobotT1000 extends BaseModel implements Robot, InitializingBean, Di
 
     @Override
     public void destroy() throws Exception {
-        System.out.println(this+" method destroy");
+        System.out.println(this + " method destroy");
     }
 
     @Override
