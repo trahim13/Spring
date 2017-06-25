@@ -6,10 +6,31 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="spring.aop.*"/>
+
     <aop:config>
         <aop:aspect id="log" ref="myLogger">
-            <aop:around method="whatTime" pointcut="execution(public * * (..))"/>
-            
+            <aop:pointcut id="allMethods" expression="execution(public * * (..))"/>
+            <aop:around method="whatTime" pointcut-ref="allMethods"/>
+            <aop:after-returning method="print" returning="obj" pointcut-ref="allMethods"/>
         </aop:aspect>
-            </aop:config>
+    </aop:config>
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<aop:config>-->
+        <!--<aop:aspect id="log" ref="myLogger">-->
+            <!--<aop:pointcut id="OneMethod" expression="execution(public * * (..))"/>-->
+            <!--<aop:around pointcut-ref="OneMethod" method="whatTime"/>-->
+
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
 </beans>
