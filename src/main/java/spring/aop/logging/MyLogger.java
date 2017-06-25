@@ -13,6 +13,11 @@ public class MyLogger {
         System.out.println("method begin: " + joinPoint.getSignature().toShortString());
         Object output = null;
 
+        for (Object object :
+                joinPoint.getArgs()) {
+            System.out.println("Param: " +object);
+        }
+
         try {
             output = joinPoint.proceed();
         } catch (Throwable throwable) {
