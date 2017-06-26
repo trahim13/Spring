@@ -1,6 +1,8 @@
 package spring.aop.object;
 
 import org.springframework.stereotype.Component;
+import spring.aop.annotations.ShowResult;
+import spring.aop.annotations.ShowTime;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -9,7 +11,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 @Component
+
 public class FileManager {
+    @ShowTime
+    @ShowResult
     public Set<String> getExtentionalList(String folder) {
         File dir = new File(folder);
         Set<String> extList = new TreeSet<>();
@@ -26,7 +31,7 @@ public class FileManager {
 
         return extList;
     }
-
+    @ShowResult
     public Map<String, Integer> getExtentionalCount(String folder) {
         File dir = new File(folder);
         Map<String, Integer> map = new HashMap<>();
