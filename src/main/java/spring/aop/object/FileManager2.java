@@ -11,10 +11,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 @Component
+public class FileManager2 {
 
-public class FileManager implements Manager {
 
-    @Override
     public Set<String> getExtentionalList(String folder) {
         File dir = new File(folder);
         Set<String> extList = new TreeSet<>();
@@ -32,7 +31,7 @@ public class FileManager implements Manager {
         return extList;
     }
 
-    @Override
+
     public Map<String, Integer> getExtentionalCount(String folder) {
         File dir = new File(folder);
         Map<String, Integer> map = new HashMap<>();
