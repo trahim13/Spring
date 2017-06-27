@@ -30,7 +30,7 @@ public class MyLogger {
         }
 
         try {
-            output = joinPoint.proceed();
+            output = joinPoint.proceed(new Object[]{"C:\\Users\\petrovski\\IdeaProjects"});
         } catch (Throwable throwable) {
             throwable.printStackTrace();
 
@@ -42,10 +42,11 @@ public class MyLogger {
         return output;
     }
     @SuppressWarnings("rawtypes")
-    @AfterReturning(pointcut = "execution(java.util.Map *(..))", returning = "obj")
-    public void printMap(Object obj) {
+    @AfterReturning(pointcut = "allMethods()&&execution(java.util.Map *(String))&&args(folder)", returning = "obj")
+    public void printMap(Object obj, String folder) {
 
         System.out.println("Print map>>");
+        System.out.println("Folder: "+folder);
 
         Map map = (Map) obj;
         for (Object object : map.keySet()) {
@@ -57,9 +58,10 @@ public class MyLogger {
     }
 
     @SuppressWarnings("rawtypes")
-    @AfterReturning(pointcut = "execution(java.util.Set *(..))", returning = "obj")
-    public void printSet(Object obj) {
+    @AfterReturning(pointcut = "allMethods()&&execution(java.util.Set *(String))&&args(folder)", returning = "obj")
+    public void printSet(Object obj, String folder) {
         System.out.println("Print Set");
+        System.out.println("Folder: "+folder);
         Set set = (Set) obj;
         for (Object object : set) {
             System.out.println(object);
