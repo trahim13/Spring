@@ -19,5 +19,7 @@ public interface MP3Dao {
 
     void delete(int id);
 
+    int getMP3Count();
+
 
 }

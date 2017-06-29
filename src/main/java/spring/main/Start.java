@@ -11,12 +11,12 @@ public class Start {
         mp3.setName("Song name");
         mp3.setAuthor("Song author");
 
-        // new SQLiteDAO().insertWithJDBC(mp3);
+
 
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-        sqLiteDAO.delete(13);
-
+        System.out.println(sqLiteDAO.getMP3Count());
+        System.out.println(sqLiteDAO.getMP3ListByAuthor("Justin").size());
     }
 }
