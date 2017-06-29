@@ -3,9 +3,11 @@ package spring.dao.objects;
 public class MP3 {
     private String name;
     private String author;
+    int id;
 
     public String getName() {
         return name;
+
     }
 
     public void setName(String name) {

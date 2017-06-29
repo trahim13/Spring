@@ -30,39 +30,18 @@ public class SQLiteDAO implements MP3Dao {
         jdbcTemplate.update(sql, new Object[] { mp3.getName(), mp3.getAuthor() });
     }
 
-    public void insertWithJDBC(MP3 mp3) {
 
-        Connection conn = null;
+    @Override
+    public void delete(int id) {
+        String sql = "delete from mp3 where id=?";
+        int resalt = jdbcTemplate.update(sql, id);
 
-        try {
-            Class.forName("org.sqlite.JDBC");
-            String url = "jdbc:sqlite:db/SpringDB.db";
-            conn = DriverManager.getConnection(url, "", "");
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    }
 
-        String sql = "insert into mp3 (name, author) VALUES (?, ?)";
-
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1, mp3.getName());
-            ps.setString(2, mp3.getAuthor());
-            ps.executeUpdate();
-            ps.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-        } finally {
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                }
-            }
+    @Override
+    public void insert(List<MP3> mp3List) {
+        for (MP3 mp3 : mp3List) {
+            insert(mp3);
         }
     }
 
