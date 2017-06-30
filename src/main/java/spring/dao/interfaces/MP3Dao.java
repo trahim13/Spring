@@ -2,10 +2,11 @@ package spring.dao.interfaces;
 
 import spring.dao.objects.MP3;
 import java.util.List;
+import java.util.Map;
 
 public interface MP3Dao {
 
-    void insert(MP3 mp3);
+    int insert(MP3 mp3);
 
     void insert(List<MP3> mp3List);
 
@@ -20,6 +21,8 @@ public interface MP3Dao {
     void delete(int id);
 
     int getMP3Count();
+
+    Map<String, Integer> getStat();
 
 
 }
