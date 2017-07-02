@@ -24,5 +24,8 @@ public interface MP3Dao {
 
     Map<String, Integer> getStat();
 
+    public int batchInsert(List<MP3> mp3List);
 
-}
+
+
+    }
