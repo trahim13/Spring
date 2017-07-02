@@ -16,9 +16,8 @@ public class Start {
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-        System.out.println(sqLiteDAO.insert(mp3));
+        System.out.println(sqLiteDAO.getMP3ByID(555));
 
-        System.out.println(sqLiteDAO.getStat());
 
     }
 }
