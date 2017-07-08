@@ -11,10 +11,10 @@ import spring.dao.objects.MP3;
 public class Start {
     public static void main(String[] args) {
         MP3 firstMP3 = new MP3();
-        firstMP3.setName("Song N08");
+        firstMP3.setName("Song N08_1");
 
         Author author = new Author();
-        author.setName("Mark");
+        author.setName("Mark_1");
 
         firstMP3.setAuthor(author);
         //
@@ -32,6 +32,6 @@ public class Start {
         ApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
         SQLiteDAO sqLiteDAO = (SQLiteDAO) context.getBean("sqliteDAO");
 
-        System.out.println(sqLiteDAO.insert(firstMP3));
+        System.out.println(sqLiteDAO.insertMP3(firstMP3));
     }
 }

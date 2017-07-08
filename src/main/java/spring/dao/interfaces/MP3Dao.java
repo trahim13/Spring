@@ -3,11 +3,14 @@ package spring.dao.interfaces;
 import java.util.List;
 import java.util.Map;
 
+import spring.dao.objects.Author;
 import spring.dao.objects.MP3;
 
 public interface MP3Dao {
 
-	int insert(MP3 mp3);
+	int insertMP3(MP3 mp3);
+
+	int insertAuthor(Author author);
 
 	int insertList(List<MP3> mp3List);
 
