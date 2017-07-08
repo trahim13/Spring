@@ -11,10 +11,10 @@ import spring.dao.objects.MP3;
 public class Start {
     public static void main(String[] args) {
         MP3 firstMP3 = new MP3();
-        firstMP3.setName("Song N08_1");
+        firstMP3.setName("Song N08_2");
 
         Author author = new Author();
-        author.setName("Mark_1");
+        author.setName("Mark_2");
 
         firstMP3.setAuthor(author);
         //
