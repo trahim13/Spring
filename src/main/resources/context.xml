@@ -8,29 +8,14 @@
 
 
     <context:component-scan base-package="spring.*" />
-    <tx:annotation-driven proxy-target-class="true" transaction-manager="transactionManager" />
-
-
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.sqlite.JDBC" />
-        <property name="url" value="jdbc:sqlite:db/SpringDB.db" />
-        <property name="username" value="" />
-        <property name="password" value="" />
-    </bean>
-
-    <bean id="transactionManager"
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
-    </bean>
-
-    <tx:advice id="adviceTransaction" transaction-manager="transactionManager">
-        <tx:attributes>
-            <tx:method name="insert*" propagation="REQUIRED" isolation="SERIALIZABLE" read-only="false"/>
-        </tx:attributes>
-    </tx:advice>
+    <import resource="transactions.xml"/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
 
     <aop:config>
-        <aop:advisor advice-ref="adviceTransaction" pointcut="execution(* spring.dao.impls.*.*(..))"/>
+        <aop:aspect id="aspectCheckTransacion" ref="checkTransactions">
+            <aop:pointcut id="insertMethod" expression="execution(* spring.dao.impls.*.insert*(..))"/>
+            <aop:before method="checkTransactionActive" pointcut-ref="insertMethod"/>
+        </aop:aspect>
     </aop:config>
 
 </beans>

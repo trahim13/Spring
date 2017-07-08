@@ -43,7 +43,7 @@ public class SQLiteDAO implements MP3Dao {
 
 	@Override
 		public int insertMP3(MP3 mp3) {
-		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
+
 
 		int author_id = insertAuthor(mp3.getAuthor());
 		String sqlInsertMP3 = "insert into mp3 (author_id, name)values(:authorId, :mp3Name)";
@@ -58,7 +58,7 @@ public class SQLiteDAO implements MP3Dao {
 
 	@Override
 		public int insertAuthor(Author author) {
-		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
+
 
 		String sqlInsetAuthor = "insert into author(name) values(:authorName)";
 
