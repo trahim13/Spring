@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.trahim.objects.User;
 
 @Controller
-public class   LoginController {
+public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
@@ -32,4 +32,10 @@ public class   LoginController {
 		return new ModelAndView("main", "user", user);
 	}
 
-}
+	@RequestMapping(value = "/failed", method = RequestMethod.GET)
+	public ModelAndView faild() {
+		return new ModelAndView("login-failed", "message", "Login faild!");
+
+	}
+	}
+
