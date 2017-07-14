@@ -29,6 +29,11 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/*"/>
 			<bean class="org.trahim.interceptor.CheckUserInterceptor"/>
+
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<bean class="org.trahim.interceptor.TimeInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
 	
