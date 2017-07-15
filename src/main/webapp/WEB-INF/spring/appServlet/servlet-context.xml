@@ -29,13 +29,21 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/*"/>
 			<bean class="org.trahim.interceptor.CheckUserInterceptor"/>
-
 		</mvc:interceptor>
 		<mvc:interceptor>
 			<mvc:mapping path="/*"/>
 			<bean class="org.trahim.interceptor.TimeInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+	<bean id="messageSource"
+		  class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="/WEB-INF/locales/messages"/>
+		<property name="defaultEncoding" value="utf-8"/>
+	</bean>
+
+
+
 	
 	
 	
