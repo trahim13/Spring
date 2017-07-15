@@ -23,11 +23,9 @@ public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView main(HttpSession session) {
-
-		WebApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
-
-		return new ModelAndView("login", "user", new User());
+	public ModelAndView main(@ModelAttribute User user, HttpSession session) {
+		user.setName("User name");
+		return new ModelAndView("login", "user", user);
 	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)

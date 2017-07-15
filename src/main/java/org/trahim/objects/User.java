@@ -13,6 +13,14 @@ public class User {
 
 	private boolean admin;
 
+	public User() {
+	}
+
+	public User(String name) {
+		super();
+		this.name = name;
+	}
+
 	public boolean isAdmin() {
 		return admin;
 	}
