@@ -1,7 +1,9 @@
 package org.trahim.objects;
 
 import javax.validation.constraints.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 public class User {
 	@Size(min = 4,message = "Имя должно быть больше 4 знаков.")
 	private String name;

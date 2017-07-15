@@ -45,13 +45,14 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/get-json-user/{name}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/get-json-user/{name}/{admin}", method = RequestMethod.GET, produces = "application/xml")
 //	@RequestMapping(value = "/get-json-user", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public User getJsonUser(@PathVariable("name") String name) {
+	public User getJsonUser(@PathVariable("name") String name, @PathVariable("admin") boolean admin) {
 //	public User getJsonUser(@RequestParam("name") String name) {
 		User user = new User();
 		user.setName(name);
+		user.setAdmin(admin);
 		return user;
 	}
 
