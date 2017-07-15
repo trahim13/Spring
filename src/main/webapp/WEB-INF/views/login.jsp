@@ -19,6 +19,11 @@
 
 		<fieldset class="boxBody">
 
+			<span style="float:right">
+				<a href="?lang=en">en</a>
+				<a href="?lang=ru">ru</a>
+			</span>
+
 			<form:label path="name"><spring:message code="username"/></form:label>
 			<form:input path="name" />
 			<form:errors path="name" cssClass="error"/>
