@@ -5,10 +5,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class User {
-	@Size(min = 4,message = "Имя должно быть больше 4 знаков.")
+	@Size(min = 4,message = "{name.size.error}")
 	private String name;
 
-	@Size(min = 6, max = 10, message = "Пароль должен быть от 6 до 10 знаков.")
+	@Size(min = 6, max = 10, message = "{password.size.error}")
 	private String password;
 
 	private boolean admin;
