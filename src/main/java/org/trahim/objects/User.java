@@ -5,7 +5,7 @@ import javax.validation.constraints.*;
 public class User {
 	@Size(min = 4,message = "Имя должно быть больше 4 знаков.")
 	private String name;
-	
+
 	@Size(min = 6, max = 10, message = "Пароль должен быть от 6 до 10 знаков.")
 	private String password;
 
