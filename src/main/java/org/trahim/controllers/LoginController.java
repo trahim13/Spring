@@ -1,5 +1,7 @@
 package org.trahim.controllers;
 
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -18,11 +20,15 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.ModelAndView;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.trahim.objects.User;
-
+import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.Locale;
+import java.util.Map;
 
 @Controller
+@SessionAttributes(value = "user")
 public class LoginController {
 
 	@Autowired
@@ -30,43 +36,51 @@ public class LoginController {
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView main(@ModelAttribute User user, HttpSession session, Locale locale) {
-		System.out.println(locale.getDisplayLanguage());
-		System.out.println(messageSource.getMessage("locale", new String[]{locale.getDisplayName(locale)}, locale));
-		user.setName("Name");
-		return new ModelAndView("login", "user", user);
+	@ModelAttribute
+	public User createNewUser() {
+		return new User("usernamevalue");
 	}
 
-
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String main(@ModelAttribute User user, HttpSession session, Locale locale) {
+		logger.info(locale.getDisplayLanguage());
+		logger.info(messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
+		return "login";
+	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public ModelAndView checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model, ModelMap modelMap) {
+	public String checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
 
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("locale", messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
-
-		if (bindingResult.hasErrors()) {
-			modelAndView.setViewName("login");
-		} else {
-			modelAndView.setViewName("main");
+		if (!bindingResult.hasErrors()) {
+			redirectAttributes.addFlashAttribute("redirect", true);
+			redirectAttributes.addFlashAttribute("locale", messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
+			return "redirect:/mainpage";
 		}
 
-		return modelAndView;
+		return "login";
 	}
 
+	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)
+	public String goMainPage(HttpServletRequest request) {
+
+//		Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+//		if (map != null) {
+//			logger.info("redirect!");
+//		} else {
+//			logger.info("update!");
+//		}
+
+		return "main";
+	}
 
 	@RequestMapping(value = "/failed", method = RequestMethod.GET)
-	public ModelAndView faild() {
-		return new ModelAndView("login-failed", "message", "Login faild!");
-
+	public ModelAndView failed() {
+		return new ModelAndView("login-failed", "message", "Login failed!");
 	}
 
-	@RequestMapping(value = "/get-json-user/{name}/{admin}", method = RequestMethod.GET, produces = "application/xml")
-//	@RequestMapping(value = "/get-json-user", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/get-json-user/{name}/{admin}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public User getJsonUser(@PathVariable("name") String name, @PathVariable("admin") boolean admin) {
-//	public User getJsonUser(@RequestParam("name") String name) {
 		User user = new User();
 		user.setName(name);
 		user.setAdmin(admin);
@@ -76,8 +90,7 @@ public class LoginController {
 	@RequestMapping(value = "/put-json-user", method = RequestMethod.POST, consumes = "application/json")
 	public ResponseEntity<String> setJsonUser(@RequestBody User user) {
 		logger.info(user.getName());
-		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
+
 }
-
-

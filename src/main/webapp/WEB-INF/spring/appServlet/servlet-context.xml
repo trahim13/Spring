@@ -25,16 +25,16 @@
 	
 	<context:component-scan base-package="org.trahim" />
 	
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
-			<bean class="org.trahim.interceptor.CheckUserInterceptor"/>
-		</mvc:interceptor>
-		<mvc:interceptor>
-			<mvc:mapping path="/*"/>
-			<bean class="org.trahim.interceptor.TimeInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
+	<!--<mvc:interceptors>-->
+		<!--<mvc:interceptor>-->
+			<!--<mvc:mapping path="/*"/>-->
+			<!--<bean class="org.trahim.interceptor.CheckUserInterceptor"/>-->
+		<!--</mvc:interceptor>-->
+		<!--&lt;!&ndash;<mvc:interceptor>&ndash;&gt;-->
+			<!--&lt;!&ndash;<mvc:mapping path="/*"/>&ndash;&gt;-->
+			<!--&lt;!&ndash;&lt;!&ndash;<bean class="org.trahim.interceptor.TimeInterceptor"/>&ndash;&gt;&ndash;&gt;-->
+		<!--&lt;!&ndash;</mvc:interceptor>&ndash;&gt;-->
+	<!--</mvc:interceptors>-->
 
 
 	<bean id="messageSource"
