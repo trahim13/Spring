@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 import org.trahim.objects.User;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import java.util.Locale;
@@ -49,15 +50,21 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public String checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
+	public ModelAndView checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
+
+		ModelAndView modelAndView = new ModelAndView();
 
 		if (!bindingResult.hasErrors()) {
-			redirectAttributes.addFlashAttribute("redirect", true);
-			redirectAttributes.addFlashAttribute("locale", messageSource.getMessage("locale", new String[] { locale.getDisplayName(locale) }, locale));
-			return "redirect:/mainpage";
+			RedirectView redirectView = new RedirectView("mainpage");
+			redirectView.setStatusCode(HttpStatus.MOVED_PERMANENTLY);
+			modelAndView.setView(redirectView);
+			redirectAttributes.addFlashAttribute("locale", messageSource.getMessage("locale", new String[]{locale.getDisplayName(locale)}, locale));
+		} else {
+			modelAndView.setViewName("main");
+
 		}
 
-		return "login";
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/mainpage", method = RequestMethod.GET)

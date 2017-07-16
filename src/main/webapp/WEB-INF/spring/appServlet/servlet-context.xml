@@ -62,13 +62,12 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+	<!--File upload-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000"/>
+	</bean>
 
 
-	
-	
-	
-	
-	
 	
 	
 </beans>
