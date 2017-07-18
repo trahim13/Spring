@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
+import org.trahim.exceptions.BadFileNameException;
 import org.trahim.objects.UploadedFile;
 import org.trahim.validator.FileValidator;
 
@@ -30,7 +31,7 @@ public class FileController {
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
     @ResponseBody
-    public ModelAndView uploadFile(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result) {
+    public ModelAndView uploadFile(@ModelAttribute("uploadedFile") UploadedFile uploadedFile, BindingResult result) throws IOException, BadFileNameException {
         ModelAndView modelAndView = new ModelAndView();
         String fileName = null;
 
@@ -41,7 +42,7 @@ public class FileController {
             modelAndView.setViewName("main");
         } else {
 
-            try {
+
 
 
                 byte[] bytes = file.getBytes();
@@ -66,10 +67,9 @@ public class FileController {
                 redirectView.setStatusCode(HttpStatus.FOUND);
                 modelAndView.setView(redirectView);
                 modelAndView.addObject("filename", fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
 
-            }
+            throw new IOException("Folder not found!");
+//            throw new BadFileNameException("Bad file name: " + fileName);
 
         }
         return modelAndView;
@@ -80,7 +80,23 @@ public class FileController {
     public String fileUploaded() {
         return "fileuploaded";
     }
+
+//    @ResponseStatus(value = HttpStatus.BAD_REQUEST, reason = "IOException exception. Check arguments!")
+//    @ExceptionHandler(value = IOException.class)
+//    public void handleIOException() {
+//        logger.error("IOException handler execute");
+//
+//    }
+
+    @ExceptionHandler(value = BadFileNameException.class)
+    public ModelAndView handleBadFileNameException(Exception e) {
+        logger.error("IOException handle execute");
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("error", e.getMessage());
+        return modelAndView;
+    }
 }
+
 
 
 
