@@ -50,7 +50,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/check-user", method = RequestMethod.POST)
-	public ModelAndView checkUser(Locale locale, @Valid @ModelAttribute("user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
+	public ModelAndView checkUser(Locale locale, @Valid @ModelAttribute( "user") User user, BindingResult bindingResult, ModelMap modelMap, RedirectAttributes redirectAttributes) {
 
 		ModelAndView modelAndView = new ModelAndView();
 
