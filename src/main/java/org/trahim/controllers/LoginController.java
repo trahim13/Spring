@@ -31,6 +31,10 @@ public class LoginController {
 	public static final int FAIR_STRENGTH = 5;
 	public static final int STRONG_STRENGTH = 7;
 
+	public static final String WEAK_COLOR = "#FF0000";
+	public static final String FAIR_COLOR = "#FF9900";
+	public static final String STRONG_COLOR = "#0099CC";
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -44,12 +48,14 @@ public class LoginController {
 	@RequestMapping(value = "/checkStrength", method = RequestMethod.GET, produces = "text/html; charset=UTF-8")
 	public @ResponseBody
 	String checkStrenght(@RequestParam String password) {
+		String reult = "<span style=\"color:%s; font-weight:bold;\">%s</span>";
+
 		if (password.length() >= WEAK_STRENGTH & password.length() < FAIR_STRENGTH) {
-			return "СЛАБЫЙ";
+			return String.format(reult, WEAK_COLOR, "Слабый");
 		} else if (password.length() >= FAIR_STRENGTH & password.length() < STRONG_STRENGTH) {
-			return "Средний";
+			return String.format(reult, FAIR_COLOR, "Средний");
 		} else if (password.length() >= STRONG_STRENGTH) {
-			return "Сильный";
+			return String.format(reult, STRONG_COLOR, "Сильный");
 		}
 		return "";
 
