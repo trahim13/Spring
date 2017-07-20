@@ -13,6 +13,9 @@
 <p>Admin ${user.admin}</p>
 <p>Locale  ${locale}!</p>
 
+<h3><a href="/dowloadPdf">Download PDF Documet</a></h3>
+
+
 <form:form method="post" enctype="multipart/form-data" modelAttribute="uploadedFile" action="uploadFile">
     <table>
     <tr>

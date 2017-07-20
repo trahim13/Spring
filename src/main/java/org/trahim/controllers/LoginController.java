@@ -120,4 +120,9 @@ public class LoginController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/dowloadPdf", method = RequestMethod.GET)
+	public ModelAndView dowloadPdf() {
+		return new ModelAndView("pdfView");
+	}
+
 }
